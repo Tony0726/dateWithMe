@@ -21,16 +21,20 @@ const EMAIL_CONFIG = {
 const ACTIVITY_OPTIONS = [
   { emoji: '🎬', label: '看电影' },
   { emoji: '🌳', label: '逛公园' },
-  { emoji: '🍽️', label: '吃大餐' },
   { emoji: '🎡', label: '游乐园' },
-  { emoji: '🌊', label: '海边散步' },
   { emoji: '⛰️', label: '爬山' },
-  { emoji: '☕', label: '喝咖啡' },
   { emoji: '🎨', label: '逛展馆' },
   { emoji: '🛍️', label: '逛街' },
-  { emoji: '🍳', label: '一起做饭' },
   { emoji: '🎤', label: '唱 K' },
-  { emoji: '🎮', label: '打游戏' }
+  { emoji: '🎮', label: '打游戏' },
+  { emoji: '🎙️', label: '脱口秀' },
+  { emoji: '🐱', label: '撸猫' },
+  { emoji: '🏎️', label: '卡丁车' },
+  { emoji: '🧶', label: 'DIY' },
+  { emoji: '🦁', label: '动物园' },
+  { emoji: '🔍', label: '密室逃脱' },
+  { emoji: '📖', label: '剧本杀' },
+  { emoji: '⛺', label: '露营' }
 ];
 
 /* ------------------------------------------------------------
