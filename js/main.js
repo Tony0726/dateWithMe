@@ -94,6 +94,11 @@
     noBtn.addEventListener('touchstart', dodgeNoBtn);
   }
 
+  /* ---------- 好呀好呀：进入选择 ---------- */
+  yesBtn.addEventListener('click', () => {
+    showStage('activities');
+  });
+
   function dodgeNoBtn() {
     const pad = 16;
     const maxX = window.innerWidth - noBtn.offsetWidth - pad;
