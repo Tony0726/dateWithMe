@@ -165,49 +165,42 @@
     ].join('\n');
   }
 
-  function loadScript(src) {
-    return new Promise((resolve, reject) => {
-      const s = document.createElement('script');
-      s.src = src;
-      s.onload = resolve;
-      s.onerror = () => reject(new Error('EmailJS SDK 加载失败'));
-      document.head.appendChild(s);
-    });
-  }
-
   sendBtn.addEventListener('click', sendEmail);
 
+  /* 通过 FormSubmit 静默发送（免注册，第一次需激活） */
   async function sendEmail() {
     if (!selectedActivities.length || !selectedFoods.length) return;
     sendBtn.disabled = true;
     sendBtn.textContent = '正在发送… ⏳';
     try {
-      if (EMAIL_CONFIG.enabled) {
-        if (typeof emailjs === 'undefined') {
-          await loadScript('https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js');
+      const res = await fetch(
+        'https://formsubmit.co/ajax/' + encodeURIComponent(EMAIL_CONFIG.toEmail),
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            _subject: '💌 约会安排，请查收～',
+            message: buildEmailBody(),
+            _captcha: 'false'
+          })
         }
-        emailjs.init({ publicKey: EMAIL_CONFIG.publicKey });
-        await emailjs.send(EMAIL_CONFIG.serviceId, EMAIL_CONFIG.templateId, {
-          to_email: EMAIL_CONFIG.toEmail,
-          from_name: EMAIL_CONFIG.fromName,
-          activities: selectedActivities.join('、'),
-          foods: selectedFoods.join('、'),
-          message: buildEmailBody()
-        });
+      );
+      const data = await res.json();
+      if (data && data.success === 'true') {
         showStage('success');
       } else {
-        // 兜底方案：调用系统邮件客户端，自动填好内容
-        const subject = '💌 约会安排，请查收～';
-        const mailto =
-          'mailto:' + EMAIL_CONFIG.toEmail +
-          '?subject=' + encodeURIComponent(subject) +
-          '&body=' + encodeURIComponent(buildEmailBody());
-        window.location.href = mailto;
-        showStage('success');
+        throw new Error(data && data.message ? data.message : '未知错误');
       }
     } catch (err) {
       console.error(err);
-      alert('发送失败了 😢 麻烦跟男朋友说一声，让他检查一下邮箱配置～');
+      alert(
+        '发送失败了 😢 ' + (err && err.message ? err.message : '') +
+        '\n\n如果是第一次发送，请去 ' + EMAIL_CONFIG.toEmail + ' 的收件箱里找一封' +
+        '「FormSubmit」发的确认邮件，点一下里面的激活链接后再试一次～'
+      );
     } finally {
       sendBtn.disabled = false;
       sendBtn.textContent = '发送约会安排 💌';

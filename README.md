@@ -24,59 +24,14 @@ python3 -m http.server 8080
 
 ## 📧 邮件配置
 
-页面默认使用 **系统邮件客户端** 发送（点发送会唤起邮件应用，自动填好收件人 / 主题 / 正文），开箱即用，适合先体验。
+页面通过 **FormSubmit** 静默发送邮件（**免注册**），女朋友在手机上点一下「发送」就直接发出，不会跳出页面，也不需要任何密钥。
 
-但更推荐用 **EmailJS** 静默发信，女朋友在手机上点一下就能直接发，不需要跳出邮件应用。配置步骤如下：
+发送目标在 [`js/config.js`](js/config.js) 里的 `EMAIL_CONFIG.toEmail`，默认为 `tony980726@qq.com`。
 
-### 1. 注册 EmailJS（免费）
+> ⚠️ **第一次发送需要激活一次**：第一次有人点击「发送」时，FormSubmit 会先往目标邮箱发一封确认邮件。
+> 打开邮箱，点一下邮件里的 **激活链接** 即可永久生效。之后所有发送都会直接到达，无需再操作。
 
-打开 <https://www.emailjs.com> → Sign Up（支持用 QQ 邮箱 / Gmail 注册）。
-
-### 2. 添加邮件服务（Service）
-
-在 EmailJS 后台 **Email Services** → **Add New Service**：
-
-- 想用 QQ 邮箱发信：选择 **QQ Mail**，或选 **SMTP** 自定义
-- 如果用 QQ 邮箱做发件账户，需要先在 QQ 邮箱里开启 SMTP 并拿到**授权码**：
-  QQ 邮箱 → 设置 → 账户 → 开启「POP3/SMTP 服务」→ 生成授权码（不是 QQ 密码）
-- 创建完成后记下 **Service ID**
-
-### 3. 创建邮件模板（Template）
-
-**Email Templates** → **Create New Template**，内容可参考：
-
-```
-Subject: 💌 约会安排，请查收～
-Content:
-亲爱的宝贝：
-
-谢谢答应和我约会！这是我们说好的安排：
-
-🏃 约会项目：{{activities}}
-🍽️ 吃什么：{{foods}}
-
-期待和你共度美好的时光！
-爱你的 {{from_name}} 💕
-```
-
-记下 **Template ID**。
-
-### 4. 填进配置
-
-打开 [`js/config.js`](js/config.js)，改成：
-
-```js
-const EMAIL_CONFIG = {
-  enabled: true,
-  serviceId: '你的 Service ID',
-  templateId: '你的 Template ID',
-  publicKey: '你的 Public Key',   // EmailJS 后台 Account → 里能看到
-  toEmail: 'tony980726@qq.com',
-  fromName: '你的名字'
-};
-```
-
-改完重新推送代码即可生效。
+发送逻辑在 [`js/main.js`](js/main.js) 的 `sendEmail` 函数里，如需改用 EmailJS 等其他方案也可以在那里替换。
 
 ## 🎨 自定义
 

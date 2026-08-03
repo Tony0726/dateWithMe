@@ -4,17 +4,12 @@
  * ============================================================ */
 
 /* ------------------------------------------------------------
- * 邮件发送（EmailJS）
- *   enabled = false 时：点击发送会调用系统邮件客户端（mailto），
- *                       并自动填好收件人、主题和正文，马上就能用。
- *   enabled = true 时：通过 EmailJS 静默发信，需要先按 README
- *                       里的「邮件配置」步骤完成设置。
+ * 邮件发送（FormSubmit，免注册）
+ *   点击「发送」会直接把约会安排静默发到下面的邮箱。
+ *   注意：第一次发送时，FormSubmit 会先往这个邮箱发一封
+ *   「激活确认邮件」，去邮箱点一下里面的确认链接即可永久生效。
  * ------------------------------------------------------------ */
 const EMAIL_CONFIG = {
-  enabled: false,                 // true = 用 EmailJS 发送；false = 调用系统邮件客户端
-  serviceId: 'YOUR_SERVICE_ID',   // EmailJS 服务 ID（Service ID）
-  templateId: 'YOUR_TEMPLATE_ID', // EmailJS 模板 ID（Template ID）
-  publicKey: 'YOUR_PUBLIC_KEY',   // EmailJS 公钥（Public Key）
   toEmail: 'tony980726@qq.com',   // 接收邮件的邮箱（改成你女朋友的邮箱）
   fromName: '你的男朋友'           // 邮件里的发件人署名，改成你的名字
 };
