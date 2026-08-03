@@ -1,0 +1,346 @@
+/* ============================================================
+ *   答应我嘛 💕 —— 约会邀请页面样式
+ * ============================================================ */
+
+:root {
+  --pink-deep: #ff4d8d;
+  --pink: #ff7ba9;
+  --pink-mid: #ffa8c5;
+  --pink-light: #ffd6e4;
+  --text: #6b3f5a;
+  --text-soft: #9a6b82;
+  --shadow: rgba(255, 107, 157, 0.28);
+  --card-bg: rgba(255, 255, 255, 0.82);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
+    "Noto Sans SC", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(255, 255, 255, 0.6), transparent 40%),
+    linear-gradient(160deg, #ffd6e4 0%, #fff0f6 45%, #ffe3ec 100%);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  -webkit-font-smoothing: antialiased;
+}
+
+#hearts-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+footer {
+  position: fixed;
+  bottom: 12px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: rgba(107, 63, 90, 0.45);
+  font-size: 13px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ---------- 阶段卡片 ---------- */
+.stage {
+  display: none;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 660px;
+  text-align: center;
+  background: var(--card-bg);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  border-radius: 30px;
+  padding: 52px 36px;
+  box-shadow: 0 24px 70px var(--shadow);
+  animation: stageIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.stage.active {
+  display: block;
+}
+
+@keyframes stageIn {
+  from {
+    opacity: 0;
+    transform: translateY(22px) scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- 大图标 / 标题 ---------- */
+.big-emoji {
+  font-size: 88px;
+  line-height: 1;
+  display: inline-block;
+  animation: bounce 1.6s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+
+.title {
+  font-size: 34px;
+  margin-top: 18px;
+  letter-spacing: 2px;
+}
+
+.stage-title {
+  font-size: 28px;
+  letter-spacing: 1px;
+}
+
+.stage-sub {
+  margin-top: 8px;
+  color: var(--text-soft);
+  font-size: 16px;
+}
+
+.question {
+  font-size: 20px;
+  margin-top: 12px;
+  color: var(--text-soft);
+}
+
+.sub-text {
+  margin-top: 10px;
+  color: var(--text-soft);
+}
+
+/* ---------- 按钮 ---------- */
+.btn {
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 600;
+  border-radius: 999px;
+  padding: 14px 36px;
+  font-size: 18px;
+  color: #fff;
+  background: linear-gradient(135deg, var(--pink) 0%, var(--pink-deep) 100%);
+  box-shadow: 0 10px 24px var(--shadow);
+  transition: transform 0.16s ease, box-shadow 0.16s ease, opacity 0.16s ease;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px var(--shadow);
+}
+
+.btn:active {
+  transform: scale(0.95);
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.btn-yes {
+  background: linear-gradient(135deg, #ff8fb3, #ff4d8d);
+  animation: pulse 2s infinite;
+}
+
+.btn-send {
+  font-size: 20px;
+  padding: 16px 44px;
+  background: linear-gradient(135deg, #ff8fb3, #ff3f7e);
+  animation: pulse 2s infinite;
+}
+
+.btn-no {
+  background: #fff;
+  color: var(--pink-deep);
+  border: 2px solid var(--pink);
+  box-shadow: none;
+}
+
+.btn-no:hover {
+  box-shadow: 0 6px 16px var(--shadow);
+}
+
+.btn-ghost {
+  background: #fff;
+  color: var(--pink-deep);
+  border: 2px dashed var(--pink);
+  box-shadow: none;
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 10px 24px var(--shadow); }
+  50% { box-shadow: 0 10px 38px rgba(255, 77, 141, 0.55); }
+}
+
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 34px;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-8px) rotate(-3deg); }
+  40% { transform: translateX(8px) rotate(3deg); }
+  60% { transform: translateX(-6px); }
+  80% { transform: translateX(6px); }
+}
+
+.shake {
+  animation: shake 0.35s ease;
+}
+
+/* ---------- 选项网格 ---------- */
+.choice-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(126px, 1fr));
+  gap: 14px;
+  margin: 30px 0 26px;
+}
+
+.choice-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 20px 12px;
+  background: #fff;
+  border: 2px solid var(--pink-light);
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  transition: transform 0.14s ease, border-color 0.14s ease,
+    background 0.14s ease, box-shadow 0.14s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.choice-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--pink-mid);
+}
+
+.choice-card:active {
+  transform: scale(0.95);
+}
+
+.choice-card.selected {
+  background: linear-gradient(145deg, #fff0f6, #ffd6e4);
+  border-color: var(--pink-deep);
+  box-shadow: 0 8px 20px var(--shadow);
+}
+
+.choice-emoji {
+  font-size: 36px;
+  line-height: 1;
+}
+
+/* ---------- 确认卡片 ---------- */
+.summary-card {
+  background: #fff;
+  border: 2px dashed var(--pink-mid);
+  border-radius: 20px;
+  padding: 24px 20px;
+  margin: 30px 0 26px;
+  text-align: left;
+  line-height: 2;
+  font-size: 17px;
+}
+
+/* ---------- 提示 ---------- */
+.no-hint {
+  min-height: 24px;
+  margin-top: 18px;
+  font-size: 15px;
+  color: var(--pink-deep);
+  font-weight: 600;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.hint {
+  margin-top: 16px;
+  font-size: 14px;
+  color: var(--text-soft);
+}
+
+/* ---------- 响应式 ---------- */
+@media (max-width: 520px) {
+  body {
+    padding: 14px;
+  }
+  .stage {
+    padding: 38px 20px;
+    border-radius: 24px;
+  }
+  .title {
+    font-size: 28px;
+  }
+  .stage-title {
+    font-size: 24px;
+  }
+  .big-emoji {
+    font-size: 72px;
+  }
+  .choice-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  .choice-card {
+    padding: 16px 8px;
+  }
+  .btn-row {
+    gap: 12px;
+  }
+}
+
+@media (max-width: 360px) {
+  .choice-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ---------- 减弱动效 ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .stage,
+  .big-emoji,
+  .btn-yes,
+  .btn-send {
+    animation: none;
+  }
+}

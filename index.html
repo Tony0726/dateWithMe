@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ffd6e4">
+  <meta name="description" content="一份特别的约会邀请 💕 答应我嘛～">
+  <title>答应我嘛 💕 · 约会邀请</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💕</text></svg>">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <canvas id="hearts-canvas"></canvas>
+
+  <!-- 阶段一：邀请 -->
+  <section id="stage-invite" class="stage active">
+    <div class="big-emoji">💝</div>
+    <h1 class="title">亲爱的宝贝</h1>
+    <p class="question">愿意和我一起去约会吗？</p>
+    <div class="btn-row">
+      <button id="btn-yes" class="btn btn-yes" type="button">好呀好呀 💕</button>
+      <button id="btn-no" class="btn btn-no" type="button">才不要 😝</button>
+    </div>
+    <p id="no-hint" class="no-hint"></p>
+  </section>
+
+  <!-- 阶段二：选约会项目 -->
+  <section id="stage-activities" class="stage">
+    <h2 class="stage-title">想去做什么呀？🥰</h2>
+    <p class="stage-sub">选一个或多个都可以哦～</p>
+    <div id="activity-grid" class="choice-grid"></div>
+    <button id="btn-next-activity" class="btn btn-primary" type="button" disabled>下一步 ➡️</button>
+  </section>
+
+  <!-- 阶段三：选吃什么 -->
+  <section id="stage-foods" class="stage">
+    <h2 class="stage-title">想吃点什么呀？😋</h2>
+    <p class="stage-sub">随便挑，我请客～</p>
+    <div id="food-grid" class="choice-grid"></div>
+    <button id="btn-next-food" class="btn btn-primary" type="button" disabled>下一步 ➡️</button>
+  </section>
+
+  <!-- 阶段四：确认 + 发送 -->
+  <section id="stage-summary" class="stage">
+    <h2 class="stage-title">完美！我们就这样安排！💖</h2>
+    <div class="summary-card">
+      <p>🏃 <strong>约会项目：</strong><span id="summary-activities"></span></p>
+      <p>🍽️ <strong>吃什么：</strong><span id="summary-foods"></span></p>
+    </div>
+    <button id="btn-send" class="btn btn-send" type="button">发送约会安排 💌</button>
+    <p class="hint">点一下，我们的安排就飞到你邮箱啦～</p>
+  </section>
+
+  <!-- 阶段五：成功 -->
+  <section id="stage-success" class="stage">
+    <div class="big-emoji">💌</div>
+    <h1 class="title">发送成功！</h1>
+    <p class="question">我们就这样说定了哦～</p>
+    <p class="sub-text">期待和你的约会！爱你哟 💕</p>
+    <div class="btn-row">
+      <button id="btn-again" class="btn btn-ghost" type="button">再看一遍 ♻️</button>
+    </div>
+  </section>
+
+  <footer>Made with 💕 for you</footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
