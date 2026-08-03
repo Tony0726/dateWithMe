@@ -32,6 +32,7 @@ const ACTIVITY_OPTIONS = [
   { emoji: '🏎️', label: '卡丁车' },
   { emoji: '🧶', label: 'DIY' },
   { emoji: '🦁', label: '动物园' },
+  { emoji: '🐠', label: '水族馆' },
   { emoji: '🔍', label: '密室逃脱' },
   { emoji: '📖', label: '剧本杀' },
   { emoji: '⛺', label: '露营' }

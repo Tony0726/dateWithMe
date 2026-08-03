@@ -32,9 +32,9 @@ body {
     linear-gradient(160deg, #ffd6e4 0%, #fff0f6 45%, #ffe3ec 100%);
   color: var(--text);
   min-height: 100vh;
+  min-height: 100dvh;
   overflow-x: hidden;
   display: flex;
-  align-items: center;
   justify-content: center;
   padding: 20px;
   -webkit-font-smoothing: antialiased;
@@ -66,6 +66,7 @@ footer {
   z-index: 1;
   width: 100%;
   max-width: 660px;
+  margin: auto; /* 内容超出屏幕时不会裁掉顶部 */
   text-align: center;
   background: var(--card-bg);
   -webkit-backdrop-filter: blur(12px);
@@ -142,6 +143,7 @@ footer {
   border-radius: 999px;
   padding: 14px 36px;
   font-size: 18px;
+  max-width: 100%; /* 防止按钮在手机上溢出 */
   color: #fff;
   background: linear-gradient(135deg, var(--pink) 0%, var(--pink-deep) 100%);
   box-shadow: 0 10px 24px var(--shadow);
@@ -322,10 +324,21 @@ footer {
     gap: 10px;
   }
   .choice-card {
-    padding: 16px 8px;
+    padding: 14px 6px;
+    gap: 6px;
+    border-radius: 16px;
+  }
+  .choice-emoji {
+    font-size: 30px;
+  }
+  .choice-label {
+    font-size: 14px;
   }
   .btn-row {
     gap: 12px;
+  }
+  footer {
+    display: none;
   }
 }
 

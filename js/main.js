@@ -69,10 +69,10 @@
     void noBtn.offsetWidth; // 重新触发动画
     noBtn.classList.add('shake');
 
-    // 确定按钮越变越大，拒绝按钮越变越小
-    yesBtn.style.fontSize = Math.min(20 + noCount * 2.4, 44) + 'px';
+    // 确定按钮越变越大，拒绝按钮越变越小（上限控制，避免手机上溢出）
+    yesBtn.style.fontSize = Math.min(20 + noCount * 2.4, 36) + 'px';
     yesBtn.style.padding =
-      Math.min(16 + noCount, 30) + 'px ' + Math.min(38 + noCount * 1.6, 60) + 'px';
+      Math.min(16 + noCount, 26) + 'px ' + Math.min(38 + noCount * 1.6, 50) + 'px';
     noBtn.style.fontSize = Math.max(13, 18 - noCount * 1.4) + 'px';
 
     // 随机提示
